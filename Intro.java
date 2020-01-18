@@ -11,7 +11,7 @@ import java.awt.Graphics;
 
 /**
  *
- * @author perilli.alberto
+ * @author mocanu.ronald
  */
 public class Intro extends Space{
         @Override
