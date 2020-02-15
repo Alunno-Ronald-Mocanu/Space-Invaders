@@ -3,32 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package spaceinvaders;
+package spaceinveder;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferStrategy;
 
 /**
  *
  * @author mocanu.ronald
  */
-public class Intro extends Space{
-        @Override
-        public void paint(Graphics g) {
-            // scrivi nel canvas la scritta in Rosso 
-            g.setColor(Color.red);
-            // Seleziona i Font della scritta (Bold) e la dimensione dei caratteri (40)
-            g.setFont(new Font("Bold", Font.PLAIN, 40));
-            // Scrivi partendo dalla posizione x=100 e y=100
-            g.drawString("Space Invaders", 100, 100);
-            g.setFont(new Font("Bold", Font.PLAIN, 10));
-            g.drawString("\tby Matteo palitto0", 110, 110);            
-        }
+public class Intro extends Space {
 
-    void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private int i;
+    private BufferStrategy strategy;
+
+    void run() throws InterruptedException {
+        createBufferStrategy(2);
+        strategy = getBufferStrategy();
+        setBackground(Color.BLACK);
+        setSize(800, 600);
+
+        for (i = 200; i >= 15; i -= 1) {
+            System.out.println("i: " + i);
+            paint();
+            Thread.sleep(10);
+          
+        }
+          for (i = 0; i <10; i++) {
+            System.out.println("i: "+i);
+            paint();
+
+        }
+        
     }
-    
-    
+
+    public void paint() {
+        Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, 800, 600);
+
+        g.setColor(Color.green);     // Colora la scritta di colore verde
+        g.setFont(new Font("Bold", Font.PLAIN, 40 + i)); // Imposta il font della scrittura e la dimensione
+        g.drawString("Space Invaders", 100 + i, 100 + i); // Serve ad impostare la poszione della scritta
+        g.setFont(new Font("Bold", Font.PLAIN, 10 + i));
+        g.drawString("           By Ronald mocanu", 110 + i + i, 110 + i + i);
+        g.dispose();
+        strategy.show();
+    }
+
 }
