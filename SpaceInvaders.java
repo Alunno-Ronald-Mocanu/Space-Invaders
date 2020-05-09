@@ -29,7 +29,8 @@ public class SpaceInvaders extends JFrame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      
+      SpaceInvaders gioco = new SpaceInvaders();
+      Space spazio = new Space();
     }
     
 }
